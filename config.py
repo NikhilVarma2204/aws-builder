@@ -33,7 +33,19 @@ def dashboard_init():
 S3 Menu - 1
 '''
 def s3_menu()->None:
-    print(Fore.YELLOW,'Choose from the below ')
+    print(Fore.YELLOW,'S3 OPERATIONS: ')
+    s3_menu_selection = questionary.select(
+        'Choose from the below S3 operations',
+        choices = ['Create Bucket, List All Buckets, Delete Bucket']
+    ).ask()
+    match s3_menu_selection:
+        case 'Create Bucket':
+            print('Bucket Creation')
+        case 'List All Buckets':
+            print('List all buckets')
+        case 'Delete Bucket':
+            print('Delete bucket')
+
 
 '''
 Kineis Data Streams Menu - 2
