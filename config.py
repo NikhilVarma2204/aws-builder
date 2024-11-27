@@ -2,7 +2,7 @@ import getpass
 from dataclasses import dataclass
 from colorama import Fore,Back
 import questionary
-
+from s3_service import create_bucket
 aws_access_key_id:str = getpass.getpass('AWS_ACCESS_KEY_ID: ')
 aws_secret_access_key:str = getpass.getpass('AWS_SECRET_ACCESS_KEY: ')
 
@@ -36,7 +36,7 @@ def s3_menu()->None:
     print(Fore.YELLOW,'S3 OPERATIONS: ')
     s3_menu_selection = questionary.select(
         'Choose from the below S3 operations',
-        choices = ['Create Bucket, List All Buckets, Delete Bucket']
+        choices = ['Create Bucket', 'List All Buckets', 'Delete Bucket']
     ).ask()
     match s3_menu_selection:
         case 'Create Bucket':
@@ -45,6 +45,10 @@ def s3_menu()->None:
             print('List all buckets')
         case 'Delete Bucket':
             print('Delete bucket')
+
+def create_bucket(name:str,region:str)->str:
+    result = create_bucket(name=name,region=region)
+    return result
 
 
 '''
